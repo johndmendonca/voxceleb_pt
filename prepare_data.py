@@ -7,11 +7,12 @@ parser = argparse.ArgumentParser(description='Process captions file.')
 parser.add_argument('--vid','-v',required=True,help='.mp4 video file')
 parser.add_argument('--rt','-t',required=True,help='Transcription file')
 parser.add_argument('--poi',required=True,help='POI ID')
+parser.add_argument('--counter',default=0,help='Utterance counter (for more videos)')
 
 args = parser.parse_args()
 
 # frame counter
-i=0
+i=args.counter
 
 #
 activation = False
@@ -20,7 +21,7 @@ spk = 'id' + (args.poi).zfill(2)
 
 sp.Popen(["mkdir",spk]).wait()
 
-with open(args.rt,'r') as rt, open('mp4.scp','w') as scp, open('text','w') as txt , open('utt2spk','w') as utt2spk:
+with open(args.rt,'r') as rt, open('mp4.scp','a') as scp, open('text','a') as txt , open('utt2spk','a') as utt2spk:
 
 	for line in rt:
 		# read times from line
