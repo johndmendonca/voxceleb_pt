@@ -12,7 +12,7 @@ parser.add_argument('--counter',default=0,help='Utterance counter (for more vide
 args = parser.parse_args()
 
 # frame counter
-i=args.counter
+i=int(args.counter)
 
 #
 activation = False
